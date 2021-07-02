@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Payments from './Payments.js';
 
 class Header extends Component {
     renderContent(){
@@ -10,7 +11,10 @@ class Header extends Component {
             case false:
                 return <li><a href="/auth/google">Login with Google</a></li>;
             default:
-                return <li><a href="/api/logout">Logout</a></li>;
+                return [
+                    <li><Payments /></li>,
+                    <li><a href="/api/logout">Logout</a></li>
+                ];
         }
     }
     render() {
@@ -19,7 +23,7 @@ class Header extends Component {
             <nav>
                 <div className="nav-wrapper">
                 <Link to={this.props.auth ? 'surveys' : '/'}
-                className="brand-logo"><img width="50px" src="./logo.png"/>proar</Link>
+                className="brand-logo"><img width="50px" src="./logo.png" alt="logo"/>proar</Link>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     {this.renderContent()}
                 </ul>
