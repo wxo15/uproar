@@ -5,6 +5,7 @@ const passport = require('passport');
 const keys = require('./config/keys.js');
 const bodyParser = require('body-parser');
 require('./models/User.js');
+require('./models/Survey.js');
 require('./services/passport.js');
 mongoose.connect(keys.mongoURI);
 
@@ -29,6 +30,7 @@ app.use(passport.session());
 // List of Route Handlers
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 /// only checks in production environment
 if (process.env.NODE_ENV === 'production'){
 	// checks client/build
