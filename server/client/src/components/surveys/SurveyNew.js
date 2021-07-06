@@ -1,4 +1,5 @@
 import React from 'react';
+import SurveyForm from './SurveyForm';
 
 const SurveyNew = () => {
     return (
@@ -7,6 +8,7 @@ const SurveyNew = () => {
                 New Survey
             </h1>
             Make new surveys!
+            <SurveyForm/>
         </div>
     )
 }

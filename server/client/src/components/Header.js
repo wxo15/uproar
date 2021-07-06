@@ -23,8 +23,8 @@ class Header extends Component {
         return (
             <nav>
                 <div className="nav-wrapper">
-                <Link to={this.props.auth ? 'surveys' : '/'}
-                className="brand-logo"><img width="50px" src="./logo.png" alt="logo"/>proar</Link>
+                <Link to={this.props.auth ? '/surveys' : '/'}
+                className="brand-logo"><img width="50px" src="/logo.png" alt="logo"/>proar</Link>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     {this.renderContent()}
                 </ul>
