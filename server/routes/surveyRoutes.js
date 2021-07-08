@@ -3,12 +3,38 @@ const requireLogin = require('../middlewares/requireLogin');
 const requireCredit = require('../middlewares/requireCredit');
 const Mailer = require('../services/Mailer');
 const surveyTemplate = require('../services/emailTemplates/surveyTemplates');
+const _ = require('lodash');
+const { Path } = require('path-parser');
+const { URL } = require('url');
 
 const Survey = mongoose.model('surveys');
 
 module.exports = app => {
     app.get('/api/surveys/thanks', (req, res) => {
         res.send('Thank you for your response!');
+    });
+
+    app.post('/api/surveys/webhooks', (req, res) => {
+        const p = new Path('/api/surveys/:surveyId/:choice');
+        
+        const events = _.chain(req.body)
+            .map(({email, url}) => {
+                const match = p.test(new URL(url).pathname); // if either surveyId or choice is missing, this will be null
+                if (match) {
+                    return {email, surveyId: match.surveyId, choice: match.choice}
+                }
+            })
+            
+            // remove any null
+            .compact() 
+
+            // only get unique email and survey id, in case user click multiple times quickly
+            .uniqBy('email', 'surveyId')
+
+            .value()
+        
+        console.log(events);
+        res.send({});
     });
     
     app.post('/api/surveys', requireLogin, requireCredit, async (req,res) => {
