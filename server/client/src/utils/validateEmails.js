@@ -1,6 +1,6 @@
 const re = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 
-export default (emails) =>{
+var validateEmails = (emails) =>{
     // trim leading and trailing spaces
     // replace trailing comma using regex
     // split by comma
@@ -19,4 +19,6 @@ export default (emails) =>{
         return `These emails are invalid: ${invalidEmails}`;
     }
     return
-}
+};
+
+export default validateEmails;
