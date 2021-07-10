@@ -12,7 +12,6 @@ main {
 main h2 {
     position: absolute;
     top: 30%;
-    left: 20%;
     text-align: center;
 }
 
@@ -58,3 +57,6 @@ footer {
     width:fit-content !important;
 }
 
+.card{
+    background-color: #0776a1 !important;
+}

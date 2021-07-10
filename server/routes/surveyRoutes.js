@@ -11,7 +11,9 @@ const Survey = mongoose.model('surveys');
 
 module.exports = app => {
     app.get('/api/surveys/:surveyId/:choice', (req, res) => {
-        res.send('Thank you for your response!');
+        var someHTML = '<div style="text-align:center;"><h1>Thank You for Your Response</h1><h3>Your response helps us to do better, so stay tuned!</h3></div>';
+        res.set('Content-Type', 'text/html');
+        res.send(someHTML);
     });
 
     app.post('/api/surveys/webhooks', (req, res) => {
@@ -78,7 +80,8 @@ module.exports = app => {
 
     app.get('/api/surveys', requireLogin, async (req, res) => {
         const surveys = await Survey.find({_user: req.user.id})
-        .select({ recipients: false}); //dont get recipients
+        .select()
+        //.select({ recipients: false}); //dont get recipients
 
         res.send(surveys);
     });
