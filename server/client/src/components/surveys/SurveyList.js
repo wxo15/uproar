@@ -5,6 +5,7 @@ import { fetchSurveys } from '../../actions';
 class SurveyList extends Component {
     componentDidMount(){
         this.props.fetchSurveys();
+        this.render();
     }
     
     renderSurveys(){
@@ -12,10 +13,14 @@ class SurveyList extends Component {
             return (
                 <div className="card blue-grey darken-1" key={survey._id}>
                     <div className="card-content white-text">
-                        <span className="card-title">{survey.title}</span>
-                        <p>{survey.body}</p>
+                        <span className="card-title"><span style={{color:"rgb(200,200,200)",fontSize:"15px"}}>Title: </span>{survey.title}</span>
+                        <p><span style={{color:"rgb(200,200,200)",fontSize:"15px"}}>Subject: </span>{survey.subject}</p>
+                        <p><span style={{color:"rgb(200,200,200)",fontSize:"15px"}}>Body: </span>{survey.body}</p>
+                        <p className="left">
+                        <span style={{color:"rgb(200,200,200)",fontSize:"15px"}}>Sent on: </span>{new Date(survey.dateSent).toLocaleDateString()}
+                        </p>
                         <p className="right">
-                            Sent on: {new Date(survey.dateSent).toLocaleDateString()}
+                        <span style={{color:"rgb(200,200,200)",fontSize:"15px"}}>Last response on: </span>{(survey.lastResponded) ? new Date(survey.lastResponded).toLocaleDateString() : "N/A"}
                         </p>
                     </div>
                     <div className="card-action">
@@ -37,9 +42,9 @@ class SurveyList extends Component {
     render() {
         return (
             <div>
-                <h3>Survey List</h3>
+                <h4>Your Survey List</h4>
                 {this.renderSurveys()}
-          </div>
+            </div>
         );
     }
 }

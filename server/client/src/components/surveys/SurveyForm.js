@@ -21,9 +21,9 @@ class SurveyForm extends Component {
     render(){
         return (
             <div style={{textAlign: 'center'}}>
-                <h3>
+                <h4>
                     New Survey Form
-                </h3>
+                </h4>
                 <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
                     {this.renderFields()}
                     <Link to="/surveys" className="red btn left white-text">
