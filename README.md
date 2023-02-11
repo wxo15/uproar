@@ -1,7 +1,7 @@
 # Uproar
 This is a ReactJS web app to allow users to send out simple Yes/No survey emails in bulk. Responses from the recipients will be recorded and can be accessed.
 
-Link to [Heroku App](https://uproar.herokuapp.com/).
+Web app taken down due to Heroku ending their free plan.
 
 <kbd>![Dashboard](https://github.com/wxo15/uproar/blob/main/screenshots/dashboard.png)</kbd>
 
